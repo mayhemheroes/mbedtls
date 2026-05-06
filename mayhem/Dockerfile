@@ -15,8 +15,9 @@
 ################################################################################
 
 FROM gcr.io/oss-fuzz-base/base-builder
+RUN sed -i s/snapshot.ubuntu.com/archive.ubuntu.com/g /etc/apt/sources.list 2>/dev/null || true
 RUN apt-get update && apt-get install -y make cmake
-RUN apt-get update && apt-get install -y python-all-dev python3-all-dev python3-pip
+RUN apt-get update && apt-get install -y python3-all-dev python3-pip
 RUN pip3 install jinja2
 
 COPY . mbedtls
